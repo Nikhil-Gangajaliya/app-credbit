@@ -7,7 +7,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
   const errorBox = document.getElementById('error');
 
   // Simple demo validation (replace with DB/API validation)
-  if (username === "admin" && password === "1234") {
+  if (username === "admin123" && password === "12345") {
     // set cookie (so server knows user is logged in)
     document.cookie = "loggedIn=true; path=/";
 
