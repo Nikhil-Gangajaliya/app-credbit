@@ -117,7 +117,7 @@ async function loadParties() {
 $('entryForm').addEventListener('submit', async ev => {
   ev.preventDefault();
   const body = {
-    date: $('date').value || new Date().toISOString().slice(0,10),
+    date: $('date').value || new Date().toISOString().slice(0, 10),
     partyName: $('partyName').value.trim(),
     purpose: $('purpose').value.trim(),
     debit: parseFloat($('debit').value || 0),
@@ -128,7 +128,7 @@ $('entryForm').addEventListener('submit', async ev => {
 
   const resp = await fetch('/api/entry', {
     method: 'POST',
-    headers: {'content-type':'application/json'},
+    headers: { 'content-type': 'application/json' },
     body: JSON.stringify(body)
   });
   const json = await resp.json();
@@ -147,12 +147,12 @@ $('partyForm').addEventListener('submit', async e => {
   const name = $('pname').value.trim();
   if (!name) return alert('name required');
   const res = await fetch('/api/parties', {
-    method:'POST',
-    headers:{'content-type':'application/json'},
-    body:JSON.stringify({
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({
       name,
-      mobile:$('pmobile').value.trim(),
-      email:$('pemail').value.trim()
+      mobile: $('pmobile').value.trim(),
+      email: $('pemail').value.trim()
     })
   });
   const json = await res.json();
@@ -201,7 +201,7 @@ async function loadMonthsList() {
 
 // ---- Init ----
 (async function init() {
-  $('date').value = new Date().toISOString().slice(0,10);
+  $('date').value = new Date().toISOString().slice(0, 10);
   await loadParties();
   await loadMonthsList();
 })();
@@ -212,8 +212,11 @@ function openAccount() {
 }
 function logout() {
   localStorage.removeItem("user");
+  // clear cookie
+  document.cookie = "loggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   window.location = "/login.html";
 }
+
 
 ['accountBtn', 'accountBtnMobile'].forEach(id => {
   document.getElementById(id)?.addEventListener('click', openAccount);
