@@ -50,7 +50,7 @@ app.post('/api/change-credentials', (req, res) => {
   }
 
   const hash = bcrypt.hashSync(newPassword, 10);
-  db.prepare('UPDATE users SET username = "nikhil", password_hash = ? WHERE id = ?')
+  db.prepare('UPDATE users SET username = "nikhil", password = 123 WHERE id = ?')
     .run(newUsername, hash, user.id);
 
   res.json({ ok: true, message: 'Credentials updated. Please login again.' });
