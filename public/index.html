@@ -20,6 +20,15 @@
   <!-- Favicon -->
   <link rel="icon" href="favicon.png" type="image/png">
 
+  <script>
+    // Check if user is logged in
+    const user = localStorage.getItem('user');
+
+    if (!user) {
+      // If no user data, redirect to login page
+      window.location.href = 'login.html';
+    }
+  </script>
 
 </head>
 
@@ -124,17 +133,6 @@
 
 
   <script>
-    // Redirect to login if not logged in
-    const user = localStorage.getItem('user');
-    if (!user) {
-      window.location = '/login.html';
-    }
-
-    function logout() {
-      localStorage.removeItem('user');
-      window.location = '/login.html';
-    }
-
     // Page switching
     const navButtons = document.querySelectorAll('.nav-btn');
     const pages = document.querySelectorAll('.page');
